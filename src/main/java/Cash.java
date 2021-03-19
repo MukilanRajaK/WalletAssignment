@@ -43,4 +43,12 @@ public class Cash {
     public int hashCode() {
         return Objects.hash(currency, value);
     }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public double getValue() {
+        return value;
+    }
 }
