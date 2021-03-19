@@ -7,11 +7,11 @@ class WalletTest {
     void shouldReturnAmountInPreferredCurrencyAsDollarsPresentInWallet() {
         Wallet wallet = new Wallet();
         wallet.putCashIntoWallet(Cash.createDollar(1));
-        wallet.putCashIntoWallet(Cash.createRupee(1));
+        wallet.putCashIntoWallet(Cash.createRupee(50));
 
-        double availableCash = wallet.getTotalCashInWalletInPreferredCurrency("Dollar");
+        double availableCash = wallet.getTotalCashInWalletInPreferredCurrency("Rupee");
 
-        assertEquals(1.01336,1.01337,0.05);
+        assertEquals(124.85,availableCash,0.05);
 
     }
 
@@ -20,10 +20,23 @@ class WalletTest {
         Wallet wallet = new Wallet();
         wallet.putCashIntoWallet(Cash.createDollar(1));
         wallet.putCashIntoWallet(Cash.createRupee(74.85));
+        wallet.putCashIntoWallet(Cash.createRupee(149.7));
 
         double availableCash = wallet.getTotalCashInWalletInPreferredCurrency("Dollar");
 
-        assertEquals(75.85,75.85,0.005);
+        assertEquals(4,availableCash,0.005);
+
+    }
+
+    @Test
+    void shouldReturnTotalAmountInWalletAfterReimbursement() {
+        Wallet wallet = new Wallet();
+        wallet.putCashIntoWallet(Cash.createRupee(100));
+        wallet.putCashIntoWallet(Cash.createRupee(74.85));
+
+        double availableCash = wallet.getTotalCashInWalletInPreferredCurrency("Rupee");
+
+        assertEquals(174.85,availableCash,0.005);
 
     }
 }
