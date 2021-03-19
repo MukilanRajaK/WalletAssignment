@@ -39,4 +39,26 @@ class WalletTest {
         assertEquals(174.85,availableCash,0.005);
 
     }
+
+    @Test
+    void shouldDeductSpecifiedAmountFromWallet() {
+        Wallet wallet = new Wallet();
+        wallet.putCashIntoWallet(Cash.createRupee(200));
+        wallet.putCashIntoWallet(Cash.createDollar(3));
+
+        boolean isDetuctable=wallet.getCashFromWallet(300.00,"Rupee");
+
+        assertTrue(isDetuctable);
+    }
+
+    @Test
+    void shouldNotDeductSpecifiedAmountFromWalletAsRequirementIsHigherThanAmountInWallet() {
+        Wallet wallet = new Wallet();
+        wallet.putCashIntoWallet(Cash.createRupee(74.85));
+        wallet.putCashIntoWallet(Cash.createDollar(1));
+
+        boolean isDetuctable=wallet.getCashFromWallet(3,"Dollar");
+
+        assertFalse(isDetuctable);
+    }
 }
