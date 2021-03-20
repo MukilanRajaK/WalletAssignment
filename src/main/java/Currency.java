@@ -3,20 +3,20 @@ import java.util.Objects;
 
 public class Currency {
     private final String currency;
-    private final HashMap<String, Double> conversionRates=new HashMap<>();
+    private final HashMap<String, Double> conversionRates = new HashMap<>();
 
     public Currency(String currency) {
-        this.currency=currency;
+        this.currency = currency;
         setConversionRates();
     }
 
     private void setConversionRates() {
-        conversionRates.put("RupeeToDollar",(double)(1/74.85));
-        conversionRates.put("DollarToRupee",74.85);
+        conversionRates.put("RupeeToDollar", (1 / 74.85));
+        conversionRates.put("DollarToRupee", 74.85);
     }
 
     public static Currency createDollar() {
-       return new Currency("Dollar");
+        return new Currency("Dollar");
     }
 
     public static Currency createRupee() {

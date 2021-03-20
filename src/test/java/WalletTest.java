@@ -11,7 +11,7 @@ class WalletTest {
 
         double availableCash = wallet.getTotalCashInWalletInPreferredCurrency("Rupee");
 
-        assertEquals(124.85,availableCash,0.05);
+        assertEquals(124.85, availableCash, 0.05);
 
     }
 
@@ -24,7 +24,7 @@ class WalletTest {
 
         double availableCash = wallet.getTotalCashInWalletInPreferredCurrency("Dollar");
 
-        assertEquals(4,availableCash,0.005);
+        assertEquals(4, availableCash, 0.005);
 
     }
 
@@ -36,7 +36,7 @@ class WalletTest {
 
         double availableCash = wallet.getTotalCashInWalletInPreferredCurrency("Rupee");
 
-        assertEquals(174.85,availableCash,0.005);
+        assertEquals(174.85, availableCash, 0.005);
 
     }
 
@@ -46,9 +46,9 @@ class WalletTest {
         wallet.putCashIntoWallet(Cash.createRupee(200));
         wallet.putCashIntoWallet(Cash.createDollar(3));
 
-        boolean isDetuctable=wallet.getCashFromWallet(300.00,"Rupee");
+        boolean isDeductable = wallet.getCashFromWallet(300.00, "Rupee");
 
-        assertTrue(isDetuctable);
+        assertTrue(isDeductable);
     }
 
     @Test
@@ -57,8 +57,8 @@ class WalletTest {
         wallet.putCashIntoWallet(Cash.createRupee(74.85));
         wallet.putCashIntoWallet(Cash.createDollar(1));
 
-        boolean isDetuctable=wallet.getCashFromWallet(3,"Dollar");
+        boolean isDeductable = wallet.getCashFromWallet(3, "Dollar");
 
-        assertFalse(isDetuctable);
+        assertFalse(isDeductable);
     }
 }
