@@ -1,3 +1,4 @@
+import Exceptions.NoSufficientCashInWalletException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -41,7 +42,7 @@ class WalletTest {
     }
 
     @Test
-    void shouldDeductSpecifiedAmountFromWallet() {
+    void shouldDeductSpecifiedAmountFromWallet() throws NoSufficientCashInWalletException {
         Wallet wallet = new Wallet();
         wallet.putCashIntoWallet(Cash.createRupee(200));
         wallet.putCashIntoWallet(Cash.createDollar(3));
@@ -52,13 +53,13 @@ class WalletTest {
     }
 
     @Test
-    void shouldNotDeductSpecifiedAmountFromWalletAsRequirementIsHigherThanAmountInWallet() {
+    void shouldNotDeductSpecifiedAmountFromWalletAsRequirementIsHigherThanAmountInWallet() throws NoSufficientCashInWalletException {
         Wallet wallet = new Wallet();
         wallet.putCashIntoWallet(Cash.createRupee(74.85));
         wallet.putCashIntoWallet(Cash.createDollar(1));
 
-        boolean isDeductable = wallet.getCashFromWallet(3, "Dollar");
 
-        assertFalse(isDeductable);
+        NoSufficientCashInWalletException exception = assertThrows(NoSufficientCashInWalletException.class, () -> wallet.getCashFromWallet(3, "Dollar"));
+        assertEquals(exception.getMessage(),"No Sufficient Cash In Wallet");
     }
 }

@@ -1,3 +1,5 @@
+import Exceptions.NoSufficientCashInWalletException;
+
 import java.util.HashMap;
 
 public class Wallet {
@@ -33,7 +35,7 @@ public class Wallet {
         return totalCashInWallet;
     }
 
-    public boolean getCashFromWallet(double amountNeeded, String currencyRequired) {
+    public boolean getCashFromWallet(double amountNeeded, String currencyRequired) throws NoSufficientCashInWalletException {
         double amountGot;
         if (containAmounts.containsKey(currencyRequired)) {
             amountGot = containAmounts.get(currencyRequired);
@@ -62,6 +64,6 @@ public class Wallet {
                 }
             }
         }
-        return false;
+        throw new NoSufficientCashInWalletException();
     }
 }
