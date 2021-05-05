@@ -10,7 +10,7 @@ public class Wallet {
     }
 
     void putCashIntoWallet(Cash cash) {
-        String currency = cash.getCurrency().getCurrency();
+        String currency = cash.getCurrencyName();
         double value = cash.getValue();
         Double currencyAmountPresent = 0.00;
         if (containAmounts.containsKey(currency)) {

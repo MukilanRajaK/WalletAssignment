@@ -46,4 +46,8 @@ public class Cash {
     public double getValue() {
         return value;
     }
+
+    public String getCurrencyName() {
+        return currency.getCurrency();
+    }
 }
